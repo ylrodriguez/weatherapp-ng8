@@ -1,0 +1,49 @@
+@import "src/content/sass/custom-variables"
+@import "src/content/sass/custom-functions"
+
+.header
+    width: 100%
+    background-color: #2b244d
+    position: relative
+    color: #fff
+    display: flex
+    flex-flow: column wrap
+    justify-content: center
+    align-items: center
+    align-content: center
+
+    .item
+        margin: 0.4rem 0
+        &.date
+            display: flex
+            justify-content: center
+            text-transform: uppercase
+            font-weight: 700
+        &.left
+            display: flex
+            align-items: center
+            i
+                font-size: 1.5rem
+                position: absolute
+                cursor: pointer
+                left: 0
+                margin-left: 1rem
+                @include md-screen
+                    position: static
+
+            .logo-icon
+                height: 2rem
+                @include md-screen
+                    margin: 0 0 0 2.5rem
+        
+        &.right
+            display: flex
+            justify-content: flex-end
+            p
+                margin: 0
+    
+    @include md-screen
+        display: grid
+        justify-content: start
+        grid-template-columns: 1fr 1fr 1fr
+        height: 64px

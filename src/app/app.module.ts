@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 
 /** Custom modules */
 import { HomeModule } from './home/home.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { HomeModule } from './home/home.module';
 
     /** Custom modules */
     HomeModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,23 @@
+@import "custom-variables"
+    
+/* Mixins */
+
+@mixin md-screen
+  // Medium devices (tablets, 768px and up)
+  @media (min-width: #{$md-screen})
+    @content
+
+@mixin lg-screen
+  // Large devices (desktops, 992px and up)
+  @media (min-width: #{$lg-screen})
+    @content
+
+@mixin xl-screen
+  // Extra large devices (large desktops, 1200px and up)
+  @media (min-width: #{$xl-screen})
+    @content
+
+@mixin max-screen
+  //Styles for maximum supported screen - 1920px
+  @media (min-width: #{$max-screen})
+    @content
