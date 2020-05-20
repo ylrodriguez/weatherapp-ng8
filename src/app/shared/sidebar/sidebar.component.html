@@ -1,1 +1,18 @@
-<p>sidebar works!</p>
+<div class="sidebar" [ngClass]="{open: isOpen}">
+    <div class="sidebar-details">
+        <i id="back-sidebar" class="fas fa-arrow-left" (click)="close()"></i>
+        <div class="profile-pic"></div>
+        <div class="text-wrapper">
+            <h5 class="m-0">Yojhan Rodriguez</h5>
+            <p class="m-0">correo@gmail.com</p>
+        </div>
+    </div>
+    <ul class="sidebar-options">
+        <li>Home</li>
+        <li>Añadir ciudad</li>
+        <li>Cerrar sesión</li>
+    </ul>
+</div>
+
+<div class="overlay" [ngClass]="{open: isOpen}" (click)="close()">
+</div>

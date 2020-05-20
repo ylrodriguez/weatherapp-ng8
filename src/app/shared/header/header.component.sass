@@ -22,12 +22,15 @@
         &.left
             display: flex
             align-items: center
-            i
-                font-size: 1.5rem
+            i#burguer-menu
+                font-size: 1.3rem
                 position: absolute
                 cursor: pointer
                 left: 0
                 margin-left: 1rem
+                transition: transform 0.5s
+                &:hover
+                    transform: scale(1.3)
                 @include md-screen
                     position: static
 

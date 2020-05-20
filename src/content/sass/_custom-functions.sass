@@ -2,6 +2,11 @@
     
 /* Mixins */
 
+@mixin sm-screen
+  // Small devices (tablets, 576px and up)
+  @media (min-width: #{$sm-screen})
+    @content
+
 @mixin md-screen
   // Medium devices (tablets, 768px and up)
   @media (min-width: #{$md-screen})
