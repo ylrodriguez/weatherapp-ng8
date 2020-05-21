@@ -12,6 +12,8 @@
         <li>Añadir ciudad</li>
         <li>Cerrar sesión</li>
     </ul>
+    <a routerLink="/" (click)="close()">Home</a>
+    <a routerLink="/details/bogota" (click)="close()">Details</a>
 </div>
 
 <div class="overlay" [ngClass]="{open: isOpen}" (click)="close()">

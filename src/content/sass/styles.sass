@@ -6,3 +6,27 @@
 body
     font-family: 'Quicksand', sans-serif
     color: #ffffff
+
+/*
+    ==========================================================================
+    Keyframes y clases de animaciones
+    ==========================================================================
+    */
+
+@keyframes detailsCircleRotation
+    0%
+        transform-origin: top
+        transform: scale(0) translateY(-50%) rotate(0)
+    100%
+        transform-origin: center
+        transform: scale(1) translateY(-50%) rotate(360deg)
+
+@keyframes slideToTop
+    0%
+        opacity: 0
+        -webkit-transform: translateY(50%)
+        transform: translateY(50%)
+    100%
+        opacity: 1
+        -webkit-transform: translateY(0)
+        transform: translateY(0)

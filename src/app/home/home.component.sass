@@ -2,8 +2,5 @@
 @import "src/content/sass/custom-functions"
 
 .main-container
-    background: linear-gradient(to bottom,#372865,#000)
-    min-height: calc(100vh - 130px)
-    padding: 1rem
-    @include md-screen
-        min-height: calc(100vh - 65px)
+    @include min-height-viewport
+

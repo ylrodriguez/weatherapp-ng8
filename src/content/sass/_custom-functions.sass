@@ -1,6 +1,8 @@
 @import "custom-variables"
     
-/* Mixins */
+/* Mixins 
+  Media queries
+  */
 
 @mixin sm-screen
   // Small devices (tablets, 576px and up)
@@ -26,3 +28,12 @@
   //Styles for maximum supported screen - 1920px
   @media (min-width: #{$max-screen})
     @content
+
+/*
+  Custom Mixins
+  */
+
+@mixin min-height-viewport
+    min-height: calc(100vh - 130px)
+    @include md-screen
+        min-height: calc(100vh - 65px)
