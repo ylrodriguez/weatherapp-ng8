@@ -7,11 +7,12 @@ import { CitiesComponent } from './cities/cities.component';
 import { CommonModule } from '@angular/common';
 import { CityCardComponent } from './cities/city-card/city-card.component';
 import { WeatherIconComponent } from './cities/weather-icon/weather-icon.component';
+import { DetailsComponent } from './details/details.component';
 
 
 
 @NgModule({
-  declarations: [HomeComponent, CitiesComponent, CityCardComponent, WeatherIconComponent],
+  declarations: [HomeComponent, CitiesComponent, CityCardComponent, WeatherIconComponent, DetailsComponent],
   imports: [
     RouterModule.forChild([HOME_ROUTE]),
     SharedModule,

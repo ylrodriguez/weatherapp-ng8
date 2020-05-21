@@ -1,5 +1,5 @@
 <app-header (openSidebar)="toggleSidebar($event)"></app-header>
 <main class="main-container">
-   <app-cities></app-cities>
+   <router-outlet></router-outlet>
 </main>
 <app-sidebar [isOpen]="sidebarIsOpen" (closeSidebar)="toggleSidebar($event)"></app-sidebar>
