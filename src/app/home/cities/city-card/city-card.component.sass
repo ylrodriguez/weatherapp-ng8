@@ -1,0 +1,65 @@
+@import "src/content/sass/custom-variables"
+@import "src/content/sass/custom-functions"
+
+.city-card
+    display: flex
+    flex-flow: column nowrap
+    align-items: center
+    background: linear-gradient(to bottom, #44307f, #291b55)
+    border-radius: 1rem
+    padding: 0.5rem
+    margin: 0.5rem
+    width: 40vw
+    cursor: pointer
+    transition: transform  0.35s
+    @include sm-screen
+        width: 30vw
+        padding: 1rem
+        margin: 1rem
+    @include md-screen
+        width: 25vw
+        padding: 2rem
+        margin: 2rem
+    
+    &:hover
+        transform: scale(1.05)
+        @include sm-screen
+            transform: scale(1.1)
+    
+    .city-title
+        padding: 0 0 1rem 0
+        text-transform: uppercase
+        font-weight: bold
+        @include md-screen
+            font-size: 2rem
+    
+    .city-temperature
+        @include md-screen
+            font-size: 1.8rem
+    
+    .weather-condition
+        margin: 0.5rem 0
+
+    .min-max-container
+        display: flex
+        .min-max-item
+            text-align: center
+            i
+                font-size: 2rem
+                margin: 1rem 1rem 0.5rem 1rem
+                @include md-screen
+                    font-size: 2.2rem
+            p.min-max-temp
+                margin: 0
+                padding: 0 1rem
+                font-size: 1.2rem
+                @include md-screen
+                    font-size: 1.4rem
+            p:last-of-type
+                margin: 0
+                font-size: 0.65rem
+                @include md-screen
+                    font-size: 0.8rem
+            
+
+
