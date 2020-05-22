@@ -1,18 +1,18 @@
-<div class="city-card">
-    <h4 class="city-title">Bogotá</h4>
-    <h5 class="city-temperature">19°</h5>
-    <app-weather-icon></app-weather-icon>
-    <h6 class="weather-condition">Nubes</h6>
+<div class="city-card new-card">
+    <h4 class="city-title">{{city.name}}</h4>
+    <h5 class="city-temperature">{{city.main.temp}}°</h5>
+    <app-weather-icon [state] = "city.icon"></app-weather-icon>
+    <h6 class="weather-condition">{{city.desc}}</h6>
     <div class="min-max-container">
         <div class="min-max-item">
             <i class="fas fa-angle-down"></i>
-            <p class="min-max-temp">14°</p>
+            <p class="min-max-temp">{{city.main.temp_min}}°</p>
             <p>min</p>
         </div>
         <div class="min-max-item">
             <i class="fas fa-angle-up"></i>
-            <p class="min-max-temp">14°</p>
-            <p>m&aacute;x</p>
+            <p class="min-max-temp">{{city.main.temp_max}}°</p>
+            <p>max</p>
         </div>
     </div>
 </div>

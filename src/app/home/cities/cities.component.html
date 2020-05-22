@@ -1,7 +1,3 @@
 <div class="cities-container">
-    <app-city-card></app-city-card>
-    <app-city-card></app-city-card>
-    <app-city-card></app-city-card>
-    <app-city-card></app-city-card>
-    <app-city-card></app-city-card>
+    <app-city-card *ngFor="let city of cities" [city]="city"></app-city-card>
 </div>

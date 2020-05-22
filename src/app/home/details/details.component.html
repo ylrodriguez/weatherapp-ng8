@@ -1,3 +1,23 @@
 <div class="details-container">
     <div class="details-circle-bg"></div>
+    <section class="details-card">
+        <div class="details-card-header">
+            <div class="details-summary">
+                <h1>{{city.main.temp}}°</h1>
+                <app-weather-icon></app-weather-icon>
+                <h3>{{city.desc}}</h3>
+                <div class="humidity-wind">
+                    <div class="humidity">
+                        <p>Humidity</p>
+                        <p>{{city.main.humidity}}%</p>
+                    </div>
+                    <div class="wind">
+                        <p>Wind</p>
+                        <p>{{city.main.windspeed}}m/s</p>
+                    </div>
+                </div>
+            </div>
+            <div><h2 class="details-city-name">{{city.name}}</h2></div>
+        </div>
+    </section>
 </div>

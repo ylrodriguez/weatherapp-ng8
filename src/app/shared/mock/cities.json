@@ -1,0 +1,34 @@
+{
+    "cities": [
+        {
+            "id": 1,
+            "name": "Bogotá",
+            "country": "CO"
+        },
+        {
+            "id": 2,
+            "name": "Medellín",
+            "country": "CO"
+        },
+        {
+            "id": 3,
+            "name": "Cali",
+            "country": "CO"
+        },
+        {
+            "id": 4,
+            "name": "Barranquilla",
+            "country": "CO"
+        },
+        {
+            "id": 5,
+            "name": "Sincelejo",
+            "country": "CO"
+        },
+        {
+            "id": 6,
+            "name": "Bucaramanga",
+            "country": "CO"
+        }
+    ]
+}
