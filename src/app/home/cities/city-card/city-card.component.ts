@@ -8,7 +8,7 @@ import { City } from 'src/app/shared/models/city.model'
 })
 export class CityCardComponent implements OnInit {
 
-  @Input() city: City;
+  @Input() city: City
 
   constructor() { }
 

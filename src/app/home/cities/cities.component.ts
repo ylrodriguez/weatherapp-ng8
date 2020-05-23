@@ -11,7 +11,7 @@ import { WeatherService } from 'src/app/shared/services/weather.service';
 export class CitiesComponent implements OnInit {
 
   cities: City[] = [];
-  isLoadingCityInfo: boolean = true;
+  finishedLoadingCities: boolean = false;
 
   constructor(private cityService: CityService, private weatherService: WeatherService) { }
 
@@ -41,7 +41,7 @@ export class CitiesComponent implements OnInit {
           this.getInfoCitiesInOrder(resCities, index, lengthCities)
         }
         else {
-          this.isLoadingCityInfo = false
+          this.finishedLoadingCities = true
         }
       },
       (err) => {
@@ -51,7 +51,7 @@ export class CitiesComponent implements OnInit {
           this.getInfoCitiesInOrder(resCities, index, lengthCities)
         }
         else{
-          this.isLoadingCityInfo = false
+          this.finishedLoadingCities = true
         }
       }
     );

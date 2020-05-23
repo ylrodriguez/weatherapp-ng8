@@ -29,6 +29,11 @@
             "id": 6,
             "name": "Bucaramanga",
             "country": "CO"
+        },
+        {
+            "id": 7,
+            "name": "Tunja",
+            "country": "CO"
         }
     ]
 }

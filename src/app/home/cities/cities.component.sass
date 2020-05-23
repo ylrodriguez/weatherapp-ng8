@@ -4,8 +4,22 @@
 .cities-container
     width: 100%
     display: flex
+    justify-content: center
     flex-flow: row wrap
     overflow: hidden
     background: linear-gradient(to bottom,#372865,#000)
     @include min-height-viewport
+
+i.hidden-item
+    width: 45vw
+    @include sm-screen
+        width: 30vw
+        padding: 1rem
+        margin: 1rem
+    @include md-screen
+        width: 25vw
+        padding: 2rem
+        margin: 2rem
+
+
 
