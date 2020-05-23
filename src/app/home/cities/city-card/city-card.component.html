@@ -1,4 +1,4 @@
-<div class="city-card new-card">
+<div class="city-card new-card" (click) = "openDetailsCity()">
     <h4 class="city-title">{{city.name}}</h4>
     <h5 class="city-temperature">{{city.main.temp}}°</h5>
     <app-weather-icon [state] = "city.icon"></app-weather-icon>

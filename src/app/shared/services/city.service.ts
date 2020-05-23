@@ -10,15 +10,27 @@ import { map } from 'rxjs/operators';
 })
 export class CityService {
 
-  private baseURL = environment.apiUrl + 'cities';
+  private baseURL = environment.apiUrl + 'city';
 
   constructor(private http: HttpClient) { }
+  
+  getCityDetails(slug: string): Observable<City>{
+    return this.http.get<City>(`${this.baseURL}` , {
+      params: {
+        slug: slug
+      }
+    })
+      .pipe(map(data => {
+        return data;
+      }));
+  }
 
   getCities(): Observable<City[]> {
-    return this.http.get<City[]>(`${this.baseURL}`)
+    return this.http.get<City[]>(`${this.baseURL}/all`)
       .pipe(map(data => {
         return data['cities'];
       }));
   }
+
 
 }

@@ -1,10 +1,10 @@
 <div class="details-container">
     <div class="details-circle-bg"></div>
     <section class="details-card">
-        <div class="details-card-header">
+        <div class="details-card-header" [ngStyle] = "addBackground()">
             <div class="details-summary">
                 <h1>{{city.main.temp}}°</h1>
-                <app-weather-icon></app-weather-icon>
+                <app-weather-icon [state] = "city.icon"></app-weather-icon>
                 <h3>{{city.desc}}</h3>
                 <div class="humidity-wind">
                     <div class="humidity">

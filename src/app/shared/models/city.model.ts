@@ -3,8 +3,11 @@ export interface City {
     name: string,
     bestName?: string,
     country: string,
+    countryName?: string,
     desc?: string,
     icon?: string,
+    slug?: string,
+    imgUrl?: string,
     main?: {
         temp: number,
         temp_min: number,

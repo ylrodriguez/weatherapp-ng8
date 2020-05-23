@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { City } from 'src/app/shared/models/city.model'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-city-card',
@@ -10,9 +11,13 @@ export class CityCardComponent implements OnInit {
 
   @Input() city: City
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+  }
+
+  openDetailsCity(){
+    this.router.navigate([`/details/${this.city.slug}`])
   }
 
 }

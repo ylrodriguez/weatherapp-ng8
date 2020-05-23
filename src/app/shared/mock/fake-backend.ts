@@ -8,7 +8,7 @@ import { default as data_json } from './cities.json';
 export class FakeBackendInterceptor implements HttpInterceptor {
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        const { url, method, headers, body } = request;
+        const { url, method, headers, body, params } = request;
 
         // wrap in delayed observable to simulate server api call
         return of(null)
@@ -19,7 +19,9 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
         function handleRoute() {
             switch (true) {
-                case url.endsWith('/cities') && method === 'GET':
+                case url.endsWith('/city') && method === 'GET':
+                    return getCityDetails();
+                case url.endsWith('/city/all') && method === 'GET':
                     return getCities();
                 // case url.endsWith('/city/remove') && method === 'POST':
                 //     return authenticate();
@@ -39,6 +41,12 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
         function getCities() {
             return ok(data_json)
+        }
+
+        function getCityDetails() {
+            let citySlug = params.get('slug');
+            let city = data_json['cities'].find( res => res['slug'] === citySlug)
+            return ok(city)
         }
 
         // Helper functions

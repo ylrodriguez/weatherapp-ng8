@@ -7,6 +7,6 @@ export const HOME_ROUTE: Route = {
     path: '', component: HomeComponent,
     children: [
         { path: '', component: CitiesComponent },
-        { path: 'details/:city', component: DetailsComponent }
+        { path: 'details/:slug', component: DetailsComponent }
     ]
 }

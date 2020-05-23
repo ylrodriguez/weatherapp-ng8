@@ -1,39 +1,68 @@
 {
     "cities": [
         {
-            "id": 1,
+            "id": 1001,
             "name": "Bogotá",
-            "country": "CO"
+            "country": "CO",
+            "countryName": "Colombia",
+            "slug": "Bogotá-CO",
+            "imgUrl" : "https://images.unsplash.com/photo-1568632234157-ce7aecd03d0d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=81001"
         },
         {
-            "id": 2,
+            "id": 1002,
             "name": "Medellín",
-            "country": "CO"
+            "country": "CO",
+            "countryName": "Colombia",
+            "slug": "Medellín-CO",
+            "imgUrl" : "https://images.unsplash.com/photo-1515366974328-f1181eb25189?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjEzNjQ2OH1001"
         },
         {
-            "id": 3,
-            "name": "Cali",
-            "country": "CO"
+            "id": 1003,
+            "name": "São Paulo",
+            "country": "BR",
+            "countryName": "Brazil",
+            "slug": "São_Paulo-BR",
+            "imgUrl" : "https://images.unsplash.com/photo-1543059080-f9b1272213d5?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjEzNjQ2OH0"
         },
         {
-            "id": 4,
+            "id": 1004,
             "name": "Barranquilla",
-            "country": "CO"
+            "country": "CO",
+            "countryName": "Colombia",
+            "slug": "Barranquilla-CO",
+            "imgUrl" : "https://images.unsplash.com/photo-1587332064870-7ccfa02a94ad?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjEzNjQ2OH1001"
         },
         {
-            "id": 5,
-            "name": "Sincelejo",
-            "country": "CO"
+            "id": 1005,
+            "name": "Buenos Aires",
+            "country": "AR",
+            "countryName": "Argentina",
+            "slug": "Buenos_Aires-AR",
+            "imgUrl" : "https://images.unsplash.com/photo-1534126874-5f6762c6181b?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjEzNjQ2OH0"
         },
         {
-            "id": 6,
-            "name": "Bucaramanga",
-            "country": "CO"
+            "id": 1006,
+            "name": "Cartagena",
+            "country": "CO",
+            "countryName": "Colombia",
+            "slug": "Cartagena-CO",
+            "imgUrl" : "https://images.unsplash.com/photo-1534943441045-1009d7cb0bb9?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjEzNjQ2OH0"
         },
         {
-            "id": 7,
-            "name": "Tunja",
-            "country": "CO"
+            "id": 1007,
+            "name": "Santa_marta",
+            "country": "CO",
+            "countryName": "Colombia",
+            "slug": "Santa marta-CO",
+            "imgUrl" : "https://images.unsplash.com/photo-1549025227-2fd0b499aaae?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjEzNjQ2OH0"
+        },
+        {
+            "id": 1008,
+            "name": "Santiago",
+            "country": "CL",
+            "countryName": "Chile",
+            "slug": "Santiago-CL",
+            "imgUrl" : "https://images.unsplash.com/photo-1515166332015-1d64b8d45691?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjEzNjQ2OH0"
         }
     ]
 }
