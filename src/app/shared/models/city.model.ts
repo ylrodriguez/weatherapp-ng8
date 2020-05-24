@@ -1,9 +1,9 @@
 export interface City {
-    id: number,
+    id?: number,
     name: string,
     bestName?: string,
-    country: string,
-    countryName?: string,
+    country?: string,
+    countryCode: string,
     desc?: string,
     icon?: string,
     slug?: string,

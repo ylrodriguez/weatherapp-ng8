@@ -17,7 +17,7 @@ export class WeatherService {
   getWeatherInfoCity(city: City): Observable<City> {
     return this.http.get(this.baseURL, {
       params: {
-        q: `${city.name},${city.country}`,
+        q: `${city.name},${city.countryCode}`,
         appid: this.apiKey,
         units: 'metric'
       },

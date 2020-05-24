@@ -8,15 +8,18 @@ import { CommonModule } from '@angular/common';
 import { CityCardComponent } from './cities/city-card/city-card.component';
 import { WeatherIconComponent } from './cities/weather-icon/weather-icon.component';
 import { DetailsComponent } from './details/details.component';
+import { AddCityComponent } from './cities/add-city/add-city.component';
+import { FormsModule } from '@angular/forms'
 
 
 
 @NgModule({
-  declarations: [HomeComponent, CitiesComponent, CityCardComponent, WeatherIconComponent, DetailsComponent],
+  declarations: [HomeComponent, CitiesComponent, CityCardComponent, WeatherIconComponent, DetailsComponent, AddCityComponent],
   imports: [
     RouterModule.forChild([HOME_ROUTE]),
     SharedModule,
-    CommonModule
+    CommonModule,
+    FormsModule
   ]
 })
 export class HomeModule { }

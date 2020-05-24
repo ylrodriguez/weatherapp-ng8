@@ -2,16 +2,25 @@
 @import "src/content/sass/custom-functions"
 
 .cities-container
-    width: 100%
-    display: flex
-    justify-content: center
-    flex-flow: row wrap
-    overflow: hidden
-    padding-top: 0.5rem
     background: linear-gradient(to bottom,#372865,#000)
-    @include min-height-viewport
-    @include md-screen
-        padding-top: 0
+    display: flex
+    flex-flow: column nowrap
+    align-items: center
+    
+    .btn-addcity
+        margin-top: 0.5rem
+
+    .cities-wrapper
+        width: 100%
+        display: flex
+        justify-content: center
+        flex-flow: row wrap
+        overflow: hidden
+        padding-top: 0.5rem
+        // background: linear-gradient(to bottom,#372865,#000)
+        @include min-height-viewport
+        @include md-screen
+            padding-top: 0
 
 i.hidden-item
     width: 45vw

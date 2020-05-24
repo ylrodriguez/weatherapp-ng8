@@ -4,6 +4,8 @@ import { HttpClientModule  } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';
 
 /** Custom modules */
 import { HomeModule } from './home/home.module';
@@ -19,7 +21,9 @@ import { fakeBackendProvider } from './shared/mock/fake-backend';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     HttpClientModule,
+    NgbModule,
 
     /** Custom modules */
     HomeModule,

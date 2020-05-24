@@ -15,9 +15,9 @@ export class DetailsComponent implements OnInit {
 
   city: City = {
     id: 3688689,
-    name: "Bogotá",
-    country: "CO",
-    desc: "Clouds",
+    name: " ",
+    countryCode: " ",
+    desc: " ",
     icon: "01d",
     main: {
       temp: 17,
@@ -67,9 +67,18 @@ export class DetailsComponent implements OnInit {
 
 
   addBackground(){
-    let imgUrl = this.city.imgUrl;
-    let cssExpression = {
-      'background-image' : `${this.linearGradient},url('${imgUrl}')`
+    var imgUrl = this.city.imgUrl;
+    var cssExpression
+    if(imgUrl){
+      cssExpression = {
+        'background-image' : `${this.linearGradient},url('${imgUrl}')`
+      }
+    }
+    else{
+      imgUrl = "content/img/bg-city-details.jpg"
+      cssExpression = {
+        'background-image' : `${this.linearGradient},url(${imgUrl})`
+      }
     }
     return cssExpression;
   }

@@ -1,0 +1,18 @@
+<ng-template #modalAddCity let-c="close">
+    <!-- <button (click)="c()">Close</button> -->
+    <div class="modal-body" (click)="$event.stopPropagation()">
+        <div class="search-wrapper">
+            <input id="queryInput" class="search-input" type="text" placeholder="Search city" #queryInput
+                [(ngModel)]="query" name="query">
+            <div class="search-panel">
+                <a routerLink="/" class="search-item" (click)="closePanel()" *ngFor="let item of foundCities">
+                    <p> {{item.name}} - {{item.country}}</p>
+                </a>
+                <object [class.hide]="!isSearching" width="30" height="30" class="loading-circle" type="image/svg+xml"
+                    data="content/img/loading-circle.svg"> </object>
+                <p *ngIf="showMessageSearch" style="margin-top: 0.5rem auto; 
+                padding: 1px 12px;">{{messageSearch}}</p>
+            </div>
+        </div>
+    </div>
+</ng-template>

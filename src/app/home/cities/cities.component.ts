@@ -45,7 +45,8 @@ export class CitiesComponent implements OnInit {
         }
       },
       (err) => {
-        console.log("Error getInfoCitiesInOrder@HomeComponent: " + err)
+        console.log("Error getInfoCitiesInOrder@CitiesComponent: " + err)
+        console.log(err)
         if (index < (lengthCities - 1)) {
           index++;
           this.getInfoCitiesInOrder(resCities, index, lengthCities)

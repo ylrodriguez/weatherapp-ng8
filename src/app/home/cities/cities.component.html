@@ -1,7 +1,12 @@
 <div class="cities-container">
-    
-        <app-city-card class="item-city" *ngFor="let city of cities" [city]="city"></app-city-card>
-        <i class="hidden-item" aria-hidden="true"></i>
-        <i class="hidden-item" aria-hidden="true"></i>
-        <i class="hidden-item" aria-hidden="true"></i>
+        <button class="btn-addcity"(click)="modalAddCity.open()">Add City</button>
+        <div class="cities-wrapper">
+                <app-city-card class="item-city" *ngFor="let city of cities" [city]="city"></app-city-card>
+                <i class="hidden-item" aria-hidden="true"></i>
+                <i class="hidden-item" aria-hidden="true"></i>
+                <i class="hidden-item" aria-hidden="true"></i>
+        </div>
 </div>
+
+
+<app-add-city #modalAddCity></app-add-city>
