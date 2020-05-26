@@ -3,6 +3,7 @@ import { City } from 'src/app/shared/models/city.model';
 import { CityService } from 'src/app/shared/services/city.service';
 import { WeatherService } from 'src/app/shared/services/weather.service';
 import { NgxSpinnerService } from "ngx-spinner";
+import { SharedHomeService } from 'src/app/shared/services/shared-home.service';
 
 @Component({
   selector: 'app-cities',
@@ -14,19 +15,25 @@ export class CitiesComponent implements OnInit {
   private citiesSubscription: any;
   cities: City[] = [];
 
-  constructor(private cityService: CityService, private weatherService: WeatherService, private spinner: NgxSpinnerService) { }
+  constructor(private sharedHomeService: SharedHomeService, private cityService: CityService, private weatherService: WeatherService, private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
     this.spinner.show();
-    this.citiesSubscription = this.cityService.getCities().subscribe(
-      (res) => {
-        this.getInfoCitiesInOrder(res, 0, Object.keys(res).length);
-      },
-      (err) => {
-        console.log("Error getCitites@HomeComponent: ");
-        console.log(err);
-      }
-    );
+    if (this.sharedHomeService.userCities) {
+      this.getInfoCitiesInOrder(this.sharedHomeService.userCities, 0, Object.keys(this.sharedHomeService.userCities).length);
+    }
+    else{
+      this.citiesSubscription = this.cityService.getCities().subscribe(
+        (res) => {
+          this.sharedHomeService.userCities = res
+          this.getInfoCitiesInOrder(res, 0, Object.keys(res).length);
+        },
+        (err) => {
+          console.log("Error getCitites@HomeComponent: ");
+          console.log(err);
+        }
+      );
+    }
   }
 
   /**
@@ -65,7 +72,9 @@ export class CitiesComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.citiesSubscription.unsubscribe();
+    if(this.citiesSubscription){
+      this.citiesSubscription.unsubscribe();
+    }
   }
 
 

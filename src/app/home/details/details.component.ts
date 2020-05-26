@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { City } from 'src/app/shared/models/city.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CityService } from 'src/app/shared/services/city.service';
 import { WeatherService } from 'src/app/shared/services/weather.service';
 import { SharedHomeService } from 'src/app/shared/services/shared-home.service';
@@ -34,7 +34,7 @@ export class DetailsComponent implements OnInit {
 
   linearGradient: string = "linear-gradient(rgba(57, 38, 68, 0.8), rgba(89, 89, 89, 0.65))";
 
-  constructor(private spinner: NgxSpinnerService, private route: ActivatedRoute, private cityService: CityService, private weatherService: WeatherService, private sharedHomeService: SharedHomeService) { }
+  constructor(private router: Router,private spinner: NgxSpinnerService, private route: ActivatedRoute, private cityService: CityService, private weatherService: WeatherService, private sharedHomeService: SharedHomeService) { }
 
   ngOnInit() {
     this.spinner.show();
@@ -50,6 +50,9 @@ export class DetailsComponent implements OnInit {
       else {
         this.detailsSubscription = this.cityService.getCityDetails(slug).subscribe(
           (res) => {
+            if(!res){
+              this.router.navigate(['/'])
+            }
             this.getWeatherInfo(res);
           },
           (err) => {

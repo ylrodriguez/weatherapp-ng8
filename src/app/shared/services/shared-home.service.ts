@@ -7,6 +7,7 @@ import { City } from '../models/city.model';
 export class SharedHomeService {
 
   private _citySelected: City;
+  private _userCities: City[];
   constructor() { }
 
   get citySelected(){
@@ -15,5 +16,13 @@ export class SharedHomeService {
 
   set citySelected(city: City){
     this._citySelected = city;
+  }
+
+  get userCities(){
+    return this._userCities;
+  }
+
+  set userCities(cities: City[]){
+    this._userCities = cities;
   }
 }
