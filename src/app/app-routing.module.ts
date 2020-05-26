@@ -8,6 +8,10 @@ const routes: Routes = [
     loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
   },
   {
+    path: '',
+    loadChildren: () => import('./account/account.module').then(m => m.AccountModule)
+  },
+  {
     path: '**', redirectTo: '/'
   }
 ];

@@ -4,18 +4,20 @@ import { environment } from '../../../environments/environment';
 import { City } from '../models/city.model';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CityService {
 
-  private baseURL = environment.apiUrl + 'city';
+  private baseURL = environment.apiUrl + 'weatherapp/cities';
 
-  constructor(private http: HttpClient) { }
-  
-  getCityDetails(slug: string): Observable<City>{
-    return this.http.get<City>(`${this.baseURL}` , {
+  constructor(private http: HttpClient, private authService: AuthService) { }
+
+  getCityDetails(slug: string): Observable<City> {
+    let headers = this.authService.setHeaders();
+    return this.http.get<City>(`${this.baseURL}`, {
       params: {
         slug: slug
       }
@@ -26,7 +28,8 @@ export class CityService {
   }
 
   getCities(): Observable<City[]> {
-    return this.http.get<City[]>(`${this.baseURL}/all`)
+    let headers = this.authService.setHeaders();
+    return this.http.get<City[]>(`${this.baseURL}/all`, { headers: headers })
       .pipe(map(data => {
         return data['cities'];
       }));
