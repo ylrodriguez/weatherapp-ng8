@@ -6,6 +6,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { NgxSpinnerModule } from "ngx-spinner";
 
 /** Custom modules */
 import { HomeModule } from './home/home.module';
@@ -24,6 +26,8 @@ import { fakeBackendProvider } from './shared/mock/fake-backend';
     FormsModule,
     HttpClientModule,
     NgbModule,
+    BrowserAnimationsModule,
+    NgxSpinnerModule,
 
     /** Custom modules */
     HomeModule,

@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CityService } from 'src/app/shared/services/city.service';
 import { WeatherService } from 'src/app/shared/services/weather.service';
 import { SharedHomeService } from 'src/app/shared/services/shared-home.service';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-details',
@@ -14,7 +15,7 @@ export class DetailsComponent implements OnInit {
 
   private detailsSubscription: any;
   private routeSubscription: any;
-  private canStartAnimation: boolean = false;
+  canStartAnimation: boolean = false;
 
   city: City = {
     id: 3688689,
@@ -33,15 +34,17 @@ export class DetailsComponent implements OnInit {
 
   linearGradient: string = "linear-gradient(rgba(57, 38, 68, 0.8), rgba(89, 89, 89, 0.65))";
 
-  constructor(private route: ActivatedRoute, private cityService: CityService, private weatherService: WeatherService, private sharedHomeService: SharedHomeService) { }
+  constructor(private spinner: NgxSpinnerService, private route: ActivatedRoute, private cityService: CityService, private weatherService: WeatherService, private sharedHomeService: SharedHomeService) { }
 
   ngOnInit() {
+    this.spinner.show();
     this.routeSubscription = this.route.params.subscribe(params => {
       var slug = params['slug'];
       // There's a citySelected previously requested
       if (this.sharedHomeService.citySelected && this.sharedHomeService.citySelected.slug == slug) {
         this.city = this.sharedHomeService.citySelected
         this.addBackground();
+        this.spinner.hide();
         this.canStartAnimation = true;
       }
       else {
@@ -52,6 +55,7 @@ export class DetailsComponent implements OnInit {
           (err) => {
             console.log("Error ngOnInit@DetailsComponent: ");
             console.log(err);
+            this.spinner.hide();
             this.canStartAnimation = true;
           }
         )
@@ -64,11 +68,13 @@ export class DetailsComponent implements OnInit {
       (res) => {
         this.city = res;
         this.addBackground();
+        this.spinner.hide();
         this.canStartAnimation = true;
       },
       (err) => {
         console.log("Error getWeatherInfo@DetailsComponent: ");
         console.log(err);
+        this.spinner.hide();
         this.canStartAnimation = true;
       }
     );

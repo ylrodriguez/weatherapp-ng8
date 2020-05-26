@@ -1,5 +1,5 @@
 <div class="cities-container">
-        <button class="btn-addcity"(click)="modalAddCity.open()">Add City</button>
+        <button class="btn-addcity" (click)="modalAddCity.open()">Add City</button>
         <div class="cities-wrapper">
                 <app-city-card class="item-city" *ngFor="let city of cities" [city]="city"></app-city-card>
                 <i class="hidden-item" aria-hidden="true"></i>
@@ -8,5 +8,7 @@
         </div>
 </div>
 
-
 <app-add-city #modalAddCity></app-add-city>
+
+<ngx-spinner bdColor="rgb(28, 27, 29, 0.8)" size="medium" color="#fff" type="ball-scale-multiple" [fullScreen]="true">
+</ngx-spinner>

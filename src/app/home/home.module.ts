@@ -10,6 +10,7 @@ import { WeatherIconComponent } from './cities/weather-icon/weather-icon.compone
 import { DetailsComponent } from './details/details.component';
 import { AddCityComponent } from './cities/add-city/add-city.component';
 import { FormsModule } from '@angular/forms'
+import { NgxSpinnerModule } from "ngx-spinner";
 
 
 
@@ -19,7 +20,8 @@ import { FormsModule } from '@angular/forms'
     RouterModule.forChild([HOME_ROUTE]),
     SharedModule,
     CommonModule,
-    FormsModule
+    FormsModule,
+    NgxSpinnerModule
   ]
 })
 export class HomeModule { }
