@@ -20,7 +20,7 @@
         width: 100rem
         border-radius: 50%
         background: linear-gradient(to bottom,#ff8b8b,#6676ff)
-        animation: .9s ease-in-out forwards detailsCircleRotation
+        opacity: 0
 
     .details-card
         background-color: #fbfbfb
@@ -29,8 +29,7 @@
         border-radius: 1rem
         width: 95vw
         margin-top: 0.5rem
-        opacity: 0
-        animation: scaleUp 1s ease-in-out 0.5s forwards 
+        opacity: 0 
         @include sm-screen
             width: 85vw
             margin-top: 1rem
@@ -93,4 +92,11 @@
                     border-radius: 0.5rem
                     width: 100%
                     bottom: 0
+
+.animation-scale-up
+    animation: scaleUp 1s ease-in-out 0.5s forwards
+
+.animation-circle
+    animation: .9s ease-in-out forwards detailsCircleRotation
+
 

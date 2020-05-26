@@ -4,7 +4,6 @@ import { ActivatedRoute } from '@angular/router';
 import { CityService } from 'src/app/shared/services/city.service';
 import { WeatherService } from 'src/app/shared/services/weather.service';
 import { SharedHomeService } from 'src/app/shared/services/shared-home.service';
-import { VirtualTimeScheduler } from 'rxjs';
 
 @Component({
   selector: 'app-details',
@@ -15,6 +14,7 @@ export class DetailsComponent implements OnInit {
 
   private detailsSubscription: any;
   private routeSubscription: any;
+  private canStartAnimation: boolean = false;
 
   city: City = {
     id: 3688689,
@@ -42,6 +42,7 @@ export class DetailsComponent implements OnInit {
       if (this.sharedHomeService.citySelected && this.sharedHomeService.citySelected.slug == slug) {
         this.city = this.sharedHomeService.citySelected
         this.addBackground();
+        this.canStartAnimation = true;
       }
       else {
         this.detailsSubscription = this.cityService.getCityDetails(slug).subscribe(
@@ -51,6 +52,7 @@ export class DetailsComponent implements OnInit {
           (err) => {
             console.log("Error ngOnInit@DetailsComponent: ");
             console.log(err);
+            this.canStartAnimation = true;
           }
         )
       }
@@ -62,10 +64,12 @@ export class DetailsComponent implements OnInit {
       (res) => {
         this.city = res;
         this.addBackground();
+        this.canStartAnimation = true;
       },
       (err) => {
         console.log("Error getWeatherInfo@DetailsComponent: ");
         console.log(err);
+        this.canStartAnimation = true;
       }
     );
   }
