@@ -3,6 +3,8 @@ import { City } from 'src/app/shared/models/city.model';
 import { ActivatedRoute } from '@angular/router';
 import { CityService } from 'src/app/shared/services/city.service';
 import { WeatherService } from 'src/app/shared/services/weather.service';
+import { SharedHomeService } from 'src/app/shared/services/shared-home.service';
+import { VirtualTimeScheduler } from 'rxjs';
 
 @Component({
   selector: 'app-details',
@@ -31,26 +33,27 @@ export class DetailsComponent implements OnInit {
 
   linearGradient: string = "linear-gradient(rgba(57, 38, 68, 0.8), rgba(89, 89, 89, 0.65))";
 
-  constructor(private route: ActivatedRoute, private cityService: CityService, private weatherService: WeatherService) { }
+  constructor(private route: ActivatedRoute, private cityService: CityService, private weatherService: WeatherService, private sharedHomeService: SharedHomeService) { }
 
   ngOnInit() {
     this.routeSubscription = this.route.params.subscribe(params => {
       var slug = params['slug'];
-      this.detailsSubscription = this.cityService.getCityDetails(slug).subscribe(
-        (res) => {
-          if (res.main) {
-            this.city = res
-            this.addBackground();
-          }
-          else {
+      // There's a citySelected previously requested
+      if (this.sharedHomeService.citySelected && this.sharedHomeService.citySelected.slug == slug) {
+        this.city = this.sharedHomeService.citySelected
+        this.addBackground();
+      }
+      else {
+        this.detailsSubscription = this.cityService.getCityDetails(slug).subscribe(
+          (res) => {
             this.getWeatherInfo(res);
+          },
+          (err) => {
+            console.log("Error ngOnInit@DetailsComponent: ");
+            console.log(err);
           }
-        },
-        (err) => {
-          console.log("Error ngOnInit@DetailsComponent: ");
-          console.log(err);
-        }
-      )
+        )
+      }
     })
   }
 
@@ -86,7 +89,9 @@ export class DetailsComponent implements OnInit {
 
   ngOnDestroy() {
     this.routeSubscription.unsubscribe();
-    this.detailsSubscription.unsubscribe();
+    if (this.detailsSubscription) {
+      this.detailsSubscription.unsubscribe();
+    }
   }
 
 }
