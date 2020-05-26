@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: "https://deepcartapi-env.herokuapp.com/api/"
+  apiUrl: "http://deepcartnglaravel:8080/api/"
 };
 
 /*

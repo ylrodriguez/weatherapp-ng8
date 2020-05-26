@@ -40,7 +40,6 @@ export class AddCityComponent implements OnInit {
   }
 
   open() {
-    console.log("Abro")
     this.modalReference = this.modalService.open(this.modalAddCity,  { windowClass: 'modal-add-city' });
     this.loadSubscriptionOptions();
     // Closes modal when back button is clicked
@@ -50,9 +49,6 @@ export class AddCityComponent implements OnInit {
   loadSubscriptionOptions() {
     // Observable for Event KeyUp of element queryInput
     this.queryInput = this.elementRef.nativeElement.ownerDocument.querySelector('#queryInput');
-    console.log(typeof this.queryInput)
-
-    console.log(this.queryInput)
     fromEvent(this.queryInput, 'keyup').pipe(
       //Gets value
       map((event: any) => {

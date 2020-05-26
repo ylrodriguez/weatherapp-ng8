@@ -1,4 +1,4 @@
-import { Component, OnInit, } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { City } from 'src/app/shared/models/city.model';
 import { ActivatedRoute } from '@angular/router';
 import { CityService } from 'src/app/shared/services/city.service';
@@ -11,6 +11,7 @@ import { WeatherService } from 'src/app/shared/services/weather.service';
 })
 export class DetailsComponent implements OnInit {
 
+  private detailsSubscription: any;
   private routeSubscription: any;
 
   city: City = {
@@ -35,8 +36,7 @@ export class DetailsComponent implements OnInit {
   ngOnInit() {
     this.routeSubscription = this.route.params.subscribe(params => {
       var slug = params['slug'];
-      console.log(`slug: ${slug}`)
-      this.cityService.getCityDetails(slug).subscribe(
+      this.detailsSubscription = this.cityService.getCityDetails(slug).subscribe(
         (res) => {
           if (res.main) {
             this.city = res
@@ -47,40 +47,46 @@ export class DetailsComponent implements OnInit {
           }
         },
         (err) => {
-          console.log("Error ngOnInit@DetailsComponent: " + err)
+          console.log("Error ngOnInit@DetailsComponent: ");
+          console.log(err);
         }
       )
     })
   }
 
   getWeatherInfo(res: City) {
-    this.weatherService.getWeatherInfoCity(res).subscribe(
+    this.detailsSubscription = this.weatherService.getWeatherInfoCity(res).subscribe(
       (res) => {
         this.city = res;
         this.addBackground();
       },
       (err) => {
-        console.log("Error getWeatherInfo@DetailsComponent: " + err)
+        console.log("Error getWeatherInfo@DetailsComponent: ");
+        console.log(err);
       }
     );
   }
 
-
-  addBackground(){
+  addBackground() {
     var imgUrl = this.city.imgUrl;
     var cssExpression
-    if(imgUrl){
+    if (imgUrl) {
       cssExpression = {
-        'background-image' : `${this.linearGradient},url('${imgUrl}')`
+        'background-image': `${this.linearGradient},url('${imgUrl}')`
       }
     }
-    else{
+    else {
       imgUrl = "content/img/bg-city-details.jpg"
       cssExpression = {
-        'background-image' : `${this.linearGradient},url(${imgUrl})`
+        'background-image': `${this.linearGradient},url(${imgUrl})`
       }
     }
     return cssExpression;
+  }
+
+  ngOnDestroy() {
+    this.routeSubscription.unsubscribe();
+    this.detailsSubscription.unsubscribe();
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { City } from 'src/app/shared/models/city.model';
 import { CityService } from 'src/app/shared/services/city.service';
 import { WeatherService } from 'src/app/shared/services/weather.service';
@@ -10,19 +10,20 @@ import { WeatherService } from 'src/app/shared/services/weather.service';
 })
 export class CitiesComponent implements OnInit {
 
+  private citiesSubscription: any;
   cities: City[] = [];
   finishedLoadingCities: boolean = false;
 
   constructor(private cityService: CityService, private weatherService: WeatherService) { }
 
   ngOnInit() {
-    this.cityService.getCities().subscribe(
+    this.citiesSubscription = this.cityService.getCities().subscribe(
       (res) => {
-        console.log(res);
         this.getInfoCitiesInOrder(res, 0, Object.keys(res).length);
       },
       (err) => {
-        console.log("Error getCitites@HomeComponent: " + err)
+        console.log("Error getCitites@HomeComponent: ");
+        console.log(err);
       }
     );
   }
@@ -33,7 +34,7 @@ export class CitiesComponent implements OnInit {
    * order.
    */
   getInfoCitiesInOrder(resCities: City[], index: number, lengthCities: number) {
-    this.weatherService.getWeatherInfoCity(resCities[index]).subscribe(
+    this.citiesSubscription = this.weatherService.getWeatherInfoCity(resCities[index]).subscribe(
       (res) => {
         this.cities.push(res)
         if (index < (lengthCities - 1)) {
@@ -45,17 +46,21 @@ export class CitiesComponent implements OnInit {
         }
       },
       (err) => {
-        console.log("Error getInfoCitiesInOrder@CitiesComponent: " + err)
+        console.log("Error getInfoCitiesInOrder@CitiesComponent: ")
         console.log(err)
         if (index < (lengthCities - 1)) {
           index++;
           this.getInfoCitiesInOrder(resCities, index, lengthCities)
         }
-        else{
+        else {
           this.finishedLoadingCities = true
         }
       }
     );
+  }
+
+  ngOnDestroy() {
+    this.citiesSubscription.unsubscribe();
   }
 
 

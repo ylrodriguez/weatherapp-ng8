@@ -20,10 +20,11 @@ export class CityService {
     return this.http.get<City>(`${this.baseURL}`, {
       params: {
         slug: slug
-      }
+      },
+      headers: headers
     })
       .pipe(map(data => {
-        return data;
+        return data['city'];
       }));
   }
 
