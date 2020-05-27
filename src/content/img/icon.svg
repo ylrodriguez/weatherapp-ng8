@@ -1,0 +1,15 @@
+<svg id="logo-weatherapp" data-name="logo-weatherapp" xmlns="http://www.w3.org/2000/svg" width="42.7" height="42.8" viewBox="0 0 42.7 42.8">
+	<defs>
+		<style>
+			.cls-1 {
+			fill: #432f7e;
+			}
+			
+			.cls-2 {
+			fill: #6676ff;
+			}
+		</style>
+	</defs>
+	<path class="cls-1" d="M0,42.8V0L42.7,42.8Z" />
+	<path class="cls-2" d="M42.8,42.8H0L42.7,0Z" />
+</svg>

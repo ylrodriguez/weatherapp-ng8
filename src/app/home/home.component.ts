@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  @ViewChild('modalAddCity', { static: false }) modalAddCity;
   sidebarIsOpen: boolean = false;
 
   constructor() { }
@@ -16,6 +18,10 @@ export class HomeComponent implements OnInit {
 
   toggleSidebar(newValue: boolean) {
     this.sidebarIsOpen = newValue;
+  }
+
+  openAddCityModal(){
+    this.modalAddCity.open()
   }
 
 }
