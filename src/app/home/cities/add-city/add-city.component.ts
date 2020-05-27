@@ -35,6 +35,7 @@ export class AddCityComponent implements OnInit {
   public canRepeatSearchRequest: boolean = false;
   public foundCities: City[];
   private modalReference: any;
+  showAnimationMessage: boolean = false;
 
 
   constructor(private spinner: NgxSpinnerService, private cityService: CityService, private sharedHomeService: SharedHomeService, private elementRef: ElementRef, private modalService: NgbModal, private location: PlatformLocation, private citySearchService: CitySearchService) { }
@@ -126,8 +127,10 @@ export class AddCityComponent implements OnInit {
       (res) => {
         this.sharedHomeService.addCityToUsersCity(res["city"]);
         this.showMessageSearch = true;
+        this.showAnimationMessage = true;
         this.messageSearch = `${res["city"].name} has been added successfully. Check it out!`;
         this.spinner.hide();
+        this.addAnimationClass();
       },
       (err) => {
         console.log("Error addNewCity@AddCityComponent: ")
@@ -135,14 +138,21 @@ export class AddCityComponent implements OnInit {
         this.showMessageSearch = true;
         if (err.error["hasCityAlready"]) {
           this.messageSearch = `${city.name} is already on your list!`;
+          this.addAnimationClass();
         }
         else {
-          this.messageSearch = `We're sorry. We couldn't add this city. Try with another one!`;
+          this.messageSearch = `We're sorry. We couldn't add this city. Try another one!`;
+          this.addAnimationClass();
         }
         this.spinner.hide();
       }
     );
 
+  }
+
+  addAnimationClass(){
+    this.showAnimationMessage = false;
+    this.showAnimationMessage = true;
   }
 
 }

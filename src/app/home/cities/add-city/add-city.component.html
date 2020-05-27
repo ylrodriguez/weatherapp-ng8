@@ -4,6 +4,7 @@
         <div class="search-wrapper">
             <input id="queryInput" class="search-input" type="text" placeholder="Search city" #queryInput
                 [(ngModel)]="query" name="query" autocomplete="off">
+            <i id="back-addcity" class="fas fa-arrow-left secondary-icon" (click)="c()"></i>
             <div class="search-panel">
                 <ul class="pl-0">
                     <li class="search-item" (click)="addNewCity(item)" *ngFor="let item of foundCities">
@@ -12,7 +13,7 @@
                 </ul>
                 <object [class.hide]="!isSearching" width="30" height="30" class="loading-circle" type="image/svg+xml"
                     data="content/img/loading-circle.svg"> </object>
-                <p *ngIf="showMessageSearch" style="margin-top: 0.5rem auto; 
+                <p [ngClass]="{'animate-message': showAnimationMessage}" *ngIf="showMessageSearch" style="margin-top: 0.5rem auto; 
                 padding: 1px 12px;">{{messageSearch}}</p>
             </div>
         </div>
