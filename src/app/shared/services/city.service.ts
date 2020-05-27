@@ -3,8 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { City } from '../models/city.model';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, mergeMap } from 'rxjs/operators';
 import { AuthService } from './auth.service';
+import { WeatherService } from './weather.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class CityService {
 
   private baseURL = environment.apiUrl + 'weatherapp/cities';
 
-  constructor(private http: HttpClient, private authService: AuthService) { }
+  constructor(private weatherService: WeatherService, private http: HttpClient, private authService: AuthService) { }
 
   getCityDetails(slug: string): Observable<City> {
     let headers = this.authService.setHeaders();
@@ -36,13 +37,25 @@ export class CityService {
       }));
   }
 
-  addNewCity(city: City) {
-    let headers = this.authService.setHeaders();
-    return this.http.post(`${this.baseURL}/add`, {
-        name: city.name,
-        country: city.country,
-        countryCode: city.countryCode
-    }, { headers: headers })
+  addNewCity(city: City): Observable<Object>{
+    
+    return this.weatherService.getWeatherInfoCity(city).pipe(
+      mergeMap(cityWeather => {
+        let headers = this.authService.setHeaders();
+        return this.http.post(`${this.baseURL}/add`, {
+        name: cityWeather.name,
+        country: cityWeather.country,
+        countryCode: cityWeather.countryCode
+        }, { headers: headers })
+      })
+    )
+
+    // let headers = this.authService.setHeaders();
+    // return this.http.post(`${this.baseURL}/add`, {
+    //     name: city.name,
+    //     country: city.country,
+    //     countryCode: city.countryCode
+    // }, { headers: headers })
   }
 
 

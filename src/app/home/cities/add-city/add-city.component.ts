@@ -124,16 +124,21 @@ export class AddCityComponent implements OnInit {
     this.closePanel();
     this.cityService.addNewCity(city).subscribe(
       (res) => {
-        if (res["success"]) {
-          this.sharedHomeService.addCityToUsersCity(res["city"]);
-          this.showMessageSearch = true;
-          this.messageSearch = `${res["city"].name} has been added successfully. Check it out!`;
-          this.spinner.hide();
-        }
+        this.sharedHomeService.addCityToUsersCity(res["city"]);
+        this.showMessageSearch = true;
+        this.messageSearch = `${res["city"].name} has been added successfully. Check it out!`;
+        this.spinner.hide();
       },
       (err) => {
         console.log("Error addNewCity@AddCityComponent: ")
         console.log(err)
+        this.showMessageSearch = true;
+        if (err.error["hasCityAlready"]) {
+          this.messageSearch = `${city.name} is already on your list!`;
+        }
+        else {
+          this.messageSearch = `We're sorry. We couldn't add this city. Try with another one!`;
+        }
         this.spinner.hide();
       }
     );

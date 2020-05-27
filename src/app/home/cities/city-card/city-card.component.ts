@@ -25,13 +25,13 @@ export class CityCardComponent implements OnInit {
       },
       (err) => {
         console.log("Error ngOnInit@CityCardComponent: ")
-        console.log("City: "+this.city)
+        console.log("City: " + this.city)
         console.log(err)
       }
     )
   }
 
-  openDetailsCity(){
+  openDetailsCity() {
     this.sharedHomeService.citySelected = this.city;
     this.router.navigate([`/details/${this.city.slug}`])
   }
