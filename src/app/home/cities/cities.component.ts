@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { City } from 'src/app/shared/models/city.model';
 import { CityService } from 'src/app/shared/services/city.service';
-import { WeatherService } from 'src/app/shared/services/weather.service';
 import { NgxSpinnerService } from "ngx-spinner";
 import { SharedHomeService } from 'src/app/shared/services/shared-home.service';
 
@@ -13,69 +12,61 @@ import { SharedHomeService } from 'src/app/shared/services/shared-home.service';
 export class CitiesComponent implements OnInit {
 
   private citiesSubscription: any;
+  private userCitiesSubscription: any;
   cities: City[] = [];
+  private firstTimeLoadingCities: boolean = true;
 
-  constructor(private sharedHomeService: SharedHomeService, private cityService: CityService, private weatherService: WeatherService, private spinner: NgxSpinnerService) { }
+  constructor(private sharedHomeService: SharedHomeService, private cityService: CityService, private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
-    this.spinner.show();
-    if (this.sharedHomeService.userCities) {
-      this.getInfoCitiesInOrder(this.sharedHomeService.userCities, 0, Object.keys(this.sharedHomeService.userCities).length);
-    }
-    else{
-      this.citiesSubscription = this.cityService.getCities().subscribe(
-        (res) => {
-          this.sharedHomeService.userCities = res
-          this.getInfoCitiesInOrder(res, 0, Object.keys(res).length);
-        },
-        (err) => {
-          console.log("Error getCitites@HomeComponent: ");
-          console.log(err);
-        }
-      );
-    }
-  }
 
-  /**
-   * Recursive function that waits until an observable finishes
-   * to begin with next iteration. This is to have the data in the same
-   * order.
-   */
-  getInfoCitiesInOrder(resCities: City[], index: number, lengthCities: number) {
-    this.citiesSubscription = this.weatherService.getWeatherInfoCity(resCities[index]).subscribe(
-      (res) => {
-        // First iteration
-        if(index == 0){
-          this.spinner.hide();
-        }
-        this.cities.push(res)
-        if (index < (lengthCities - 1)) {
-          index++;
-          this.getInfoCitiesInOrder(resCities, index, lengthCities)
+    this.userCitiesSubscription = this.sharedHomeService.userCities.subscribe(userCities => {
+      this.spinner.show();
+      if (userCities.length) {
+        this.spinner.hide();
+        if (this.firstTimeLoadingCities) {
+          this.firstTimeLoadingCities = false;
+          for (let city of userCities) {
+            this.cities.push(city)
+          }
         }
         else {
-          this.spinner.hide();
-        }
-      },
-      (err) => {
-        console.log("Error getInfoCitiesInOrder@CitiesComponent: ")
-        console.log(err)
-        if (index < (lengthCities - 1)) {
-          index++;
-          this.getInfoCitiesInOrder(resCities, index, lengthCities)
-        }
-        else {
-          this.spinner.hide();
+          let lastIndex = userCities.length - 1;
+          let lastCity = userCities[lastIndex];
+          this.cities.push(lastCity);
         }
       }
-    );
+      else {
+        this.citiesSubscription = this.cityService.getCities().subscribe(
+          (res) => {
+            if (!res) {
+              console.log("No tiene ciudades");
+              this.spinner.hide();
+              this.firstTimeLoadingCities = false;
+            }
+            else {
+              // If user has cities, calls next in BehaviorSubject so 
+              // next iteration above userCities.length is true.
+              this.sharedHomeService.userCities.next(res);
+            }
+          },
+          (err) => {
+            console.log("Error getCitites@HomeComponent: ");
+            console.log(err);
+            this.spinner.hide();
+          }
+        );
+      }
+    })
   }
 
   ngOnDestroy() {
-    if(this.citiesSubscription){
+    if (this.citiesSubscription) {
       this.citiesSubscription.unsubscribe();
     }
+    if (this.userCitiesSubscription) {
+      this.userCitiesSubscription.unsubscribe();
+    }
   }
-
 
 }

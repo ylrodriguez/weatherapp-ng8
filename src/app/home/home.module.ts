@@ -12,14 +12,13 @@ import { AddCityComponent } from './cities/add-city/add-city.component';
 import { FormsModule } from '@angular/forms'
 import { NgxSpinnerModule } from "ngx-spinner";
 
-
-
 @NgModule({
   declarations: [HomeComponent, CitiesComponent, CityCardComponent, WeatherIconComponent, DetailsComponent, AddCityComponent],
   imports: [
     RouterModule.forChild([HOME_ROUTE]),
     SharedModule,
     CommonModule,
+    
     FormsModule,
     NgxSpinnerModule
   ]

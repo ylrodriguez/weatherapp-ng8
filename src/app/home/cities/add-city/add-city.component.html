@@ -5,9 +5,11 @@
             <input id="queryInput" class="search-input" type="text" placeholder="Search city" #queryInput
                 [(ngModel)]="query" name="query" autocomplete="off">
             <div class="search-panel">
-                <a routerLink="/" class="search-item" (click)="closePanel()" *ngFor="let item of foundCities">
-                    <p> {{item.name}} - {{item.country}}</p>
-                </a>
+                <ul class="pl-0">
+                    <li class="search-item" (click)="addNewCity(item)" *ngFor="let item of foundCities">
+                        <p> {{item.name}} - {{item.country}}</p>
+                    </li>
+                </ul>
                 <object [class.hide]="!isSearching" width="30" height="30" class="loading-circle" type="image/svg+xml"
                     data="content/img/loading-circle.svg"> </object>
                 <p *ngIf="showMessageSearch" style="margin-top: 0.5rem auto; 
@@ -16,3 +18,6 @@
         </div>
     </div>
 </ng-template>
+
+<ngx-spinner bdColor="rgb(28, 27, 29, 0.8)" size="medium" color="#fff" type="ball-scale-multiple" [fullScreen]="true">
+</ngx-spinner>

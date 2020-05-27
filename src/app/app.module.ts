@@ -8,6 +8,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgxSpinnerModule } from "ngx-spinner";
+import { ToastrModule } from 'ngx-toastr';
 
 /** Custom modules */
 import { HomeModule } from './home/home.module';
@@ -28,6 +29,7 @@ import { fakeBackendProvider } from './shared/mock/fake-backend';
     NgbModule,
     BrowserAnimationsModule,
     NgxSpinnerModule,
+    ToastrModule.forRoot(), // ToastrModule added
 
     /** Custom modules */
     HomeModule,

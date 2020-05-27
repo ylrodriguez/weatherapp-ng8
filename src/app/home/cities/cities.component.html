@@ -7,7 +7,7 @@
                 <i class="hidden-item" aria-hidden="true"></i>
         </div>
         <!-- Add imgs to cache -->
-        <img *ngFor="let city of cities" style="display: none" [src] ="city.imgUrl">
+        <img *ngFor="let city of cities" style="display: none" [attr.src] ="city.imgUrl ? city.imgUrl : null">
 </div>
 
 <app-add-city #modalAddCity></app-add-city>

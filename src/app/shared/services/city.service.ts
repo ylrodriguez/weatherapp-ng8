@@ -36,5 +36,14 @@ export class CityService {
       }));
   }
 
+  addNewCity(city: City) {
+    let headers = this.authService.setHeaders();
+    return this.http.post(`${this.baseURL}/add`, {
+        name: city.name,
+        country: city.country,
+        countryCode: city.countryCode
+    }, { headers: headers })
+  }
+
 
 }

@@ -19,7 +19,7 @@ export class CitySearchService {
         namePrefix: query,
         limit: '5',
         types: 'city',
-        sort: '-population,name'
+        // sort: '-population,name'
       },
     })
       .pipe(map(data => {

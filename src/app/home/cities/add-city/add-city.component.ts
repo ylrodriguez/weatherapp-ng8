@@ -10,6 +10,10 @@ import {
 import { fromEvent } from 'rxjs';
 import { City } from 'src/app/shared/models/city.model';
 import { CitySearchService } from 'src/app/shared/services/city-search.service';
+import { SharedHomeService } from 'src/app/shared/services/shared-home.service';
+import { CityService } from 'src/app/shared/services/city.service';
+import { NgxSpinnerService } from "ngx-spinner";
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-city',
@@ -33,14 +37,14 @@ export class AddCityComponent implements OnInit {
   private modalReference: any;
 
 
-  constructor(private elementRef: ElementRef, private modalService: NgbModal, private location: PlatformLocation, private citySearchService: CitySearchService) { }
+  constructor(private spinner: NgxSpinnerService, private cityService: CityService, private sharedHomeService: SharedHomeService, private elementRef: ElementRef, private modalService: NgbModal, private location: PlatformLocation, private citySearchService: CitySearchService) { }
 
   ngOnInit() {
 
   }
 
   open() {
-    this.modalReference = this.modalService.open(this.modalAddCity,  { windowClass: 'modal-add-city' });
+    this.modalReference = this.modalService.open(this.modalAddCity, { windowClass: 'modal-add-city' });
     this.loadSubscriptionOptions();
     // Closes modal when back button is clicked
     this.location.onPopState(() => this.modalReference.close());
@@ -59,7 +63,7 @@ export class AddCityComponent implements OnInit {
         if (res.length <= 2) {
           this.messageSearch = "Search must be at least 3 characters long."
           this.showMessageSearch = true;
-      
+
         }
         if (res.length <= 0) {
           this.closePanel();
@@ -89,30 +93,51 @@ export class AddCityComponent implements OnInit {
     this.foundCities = null;
     this.canRepeatSearchRequest = false;
     this.showMessageSearch = false;
-      this.citySearchService.searchCities(query).subscribe(
-        (res) => {
-          this.foundCities = res;
-          this.isSearching = false;
-          if (this.foundCities.length <= 0) {
-            this.messageSearch = "No results."
-            this.showMessageSearch = true;
-          }
-        },
-        (err) => {
-          console.log(err)
-          this.isSearching = false; 
+    this.citySearchService.searchCities(query).subscribe(
+      (res) => {
+        this.foundCities = res;
+        this.isSearching = false;
+        if (this.foundCities.length <= 0) {
           this.messageSearch = "No results."
           this.showMessageSearch = true;
         }
-      )
-    
+      },
+      (err) => {
+        console.log(err)
+        this.isSearching = false;
+        this.messageSearch = "No results."
+        this.showMessageSearch = true;
+      }
+    )
+
   }
 
-  closePanel(){
+  closePanel() {
     this.query = "";
     this.foundCities = null;
     this.canRepeatSearchRequest = true;
     this.messageSearch = ""
+  }
+
+  addNewCity(city: City) {
+    this.spinner.show();
+    this.closePanel();
+    this.cityService.addNewCity(city).subscribe(
+      (res) => {
+        if (res["success"]) {
+          this.sharedHomeService.addCityToUsersCity(res["city"]);
+          this.showMessageSearch = true;
+          this.messageSearch = `${res["city"].name} has been added successfully. Check it out!`;
+          this.spinner.hide();
+        }
+      },
+      (err) => {
+        console.log("Error addNewCity@AddCityComponent: ")
+        console.log(err)
+        this.spinner.hide();
+      }
+    );
+
   }
 
 }

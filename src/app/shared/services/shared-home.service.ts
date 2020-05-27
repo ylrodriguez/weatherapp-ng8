@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { City } from '../models/city.model';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +8,7 @@ import { City } from '../models/city.model';
 export class SharedHomeService {
 
   private _citySelected: City;
-  private _userCities: City[];
+  private _userCities= new BehaviorSubject<City[]>([]);
   constructor() { }
 
   get citySelected(){
@@ -22,7 +23,10 @@ export class SharedHomeService {
     return this._userCities;
   }
 
-  set userCities(cities: City[]){
-    this._userCities = cities;
+  addCityToUsersCity(city: City){
+    const currentValue = this._userCities.getValue();
+    const updatedValue = [...currentValue, city];
+    this._userCities.next(updatedValue);
   }
+  
 }
