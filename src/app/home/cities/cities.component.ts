@@ -22,24 +22,33 @@ export class CitiesComponent implements OnInit {
 
     this.userCitiesSubscription = this.sharedHomeService.userCities.subscribe(userCities => {
       this.spinner.show();
-      if (userCities.length) {
+
+      if (userCities.length || userCities['function'] == "remove") { //App has cities saved or it's removing the last one.
         this.spinner.hide();
-        if (this.firstTimeLoadingCities) {
+
+        if (this.firstTimeLoadingCities) { // It is the first time that it's going to load the cities
           this.firstTimeLoadingCities = false;
           for (let city of userCities) {
             this.cities.push(city)
           }
         }
-        else {
+        else if (userCities['function'] == "add"){
           let lastIndex = userCities.length - 1;
           let lastCity = userCities[lastIndex];
           this.cities.push(lastCity);
         }
+        else if (userCities['function'] == "remove"){
+          this.cities = [];
+          for (let city of userCities) {
+            this.cities.push(city)
+          }
+        }
+
       }
       else {
         this.citiesSubscription = this.cityService.getCities().subscribe(
           (res) => {
-            if (!res) {
+            if (!res.length) {
               console.log("No tiene ciudades");
               this.spinner.hide();
               this.firstTimeLoadingCities = false;

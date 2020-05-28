@@ -1,4 +1,10 @@
-<div class="city-card new-card" (click) = "openDetailsCity()" *ngIf="canShowCityCard">
+<div class="city-card new-card" 
+    (click) = "openDetailsCity()"
+    (mouseover) = "canShowDeleteButton = true"
+    (mouseout) = "canShowDeleteButton = false" 
+    *ngIf="canShowCityCard">
+    
+    <i class="delete-item far fa-times-circle" (click) = "$event.stopPropagation(); openPopUpConfirm()" [ngClass] = "{'visible': canShowDeleteButton}"></i>
     <h4 class="city-title">{{city.name}}</h4>
     <h5 class="city-temperature">{{city.main.temp}}°</h5>
     <div class="weather-icon">
@@ -17,4 +23,23 @@
             <p>max</p>
         </div>
     </div>
+
 </div>
+
+<!-- Modal pop up confirm -->
+<ng-template #modalPopUpConfirm let-c="close">
+    <div class="modal-body">
+        <div class="popup-confirm">
+            <p>Are you sure you want to remove '{{city.name}}'?</p>
+            <i id="back-popup" class="fas fa-arrow-left secondary-icon" (click)="c()"></i>
+            <div class="button-wrapper">
+                <button class="btn-popout" (click) = "removeCity(); c()">Yes</button>
+                <button class="btn-popout" (click) = "c()">No</button>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<!-- Spinner -->
+<ngx-spinner bdColor="rgb(28, 27, 29, 0.8)" size="medium" color="#fff" type="ball-scale-multiple" [fullScreen]="true">
+</ngx-spinner>

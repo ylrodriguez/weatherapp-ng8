@@ -26,6 +26,15 @@ export class SharedHomeService {
   addCityToUsersCity(city: City){
     const currentValue = this._userCities.getValue();
     const updatedValue = [...currentValue, city];
+    updatedValue["function"] = "add"
+    this._userCities.next(updatedValue);
+  }
+
+  removeCityToUsersCities(city: City){
+    const updatedValue = this._userCities.getValue().filter(
+      item => item.id != city.id
+    )
+    updatedValue["function"] = "remove"
     this._userCities.next(updatedValue);
   }
   

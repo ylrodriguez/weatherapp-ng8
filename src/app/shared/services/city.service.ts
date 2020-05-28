@@ -49,14 +49,11 @@ export class CityService {
         }, { headers: headers })
       })
     )
-
-    // let headers = this.authService.setHeaders();
-    // return this.http.post(`${this.baseURL}/add`, {
-    //     name: city.name,
-    //     country: city.country,
-    //     countryCode: city.countryCode
-    // }, { headers: headers })
   }
-
+  
+  removeCity(city: City): Observable<Object>{
+      let headers = this.authService.setHeaders();
+      return this.http.delete(`${this.baseURL}/remove/${city.id}`, { headers: headers })
+  }
 
 }
