@@ -15,4 +15,5 @@ export interface City {
         humidity: number,
         windspeed: number
     }
+    forecast?: any[]
 }

@@ -1,7 +1,9 @@
 <div class="city-card new-card" (click) = "openDetailsCity()" *ngIf="canShowCityCard">
     <h4 class="city-title">{{city.name}}</h4>
     <h5 class="city-temperature">{{city.main.temp}}°</h5>
-    <app-weather-icon [state] = "city.icon"></app-weather-icon>
+    <div class="weather-icon">
+        <img src="http://openweathermap.org/img/wn/{{city.icon}}@2x.png" alt="">
+    </div>
     <h6 class="weather-condition">{{city.desc}}</h6>
     <div class="min-max-container">
         <div class="min-max-item">

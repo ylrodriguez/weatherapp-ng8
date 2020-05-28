@@ -23,10 +23,11 @@
         opacity: 0
 
     .details-card
-        background-color: #fbfbfb
-        color: #2b244d
+        background-color: #f4f4f4
+        color: #48484a
         z-index: 2
-        border-radius: 1rem
+        border-top-left-radius: 1rem
+        border-top-right-radius: 1rem
         width: 95vw
         margin-top: 0.5rem
         opacity: 0 
@@ -51,7 +52,7 @@
             filter: opacity(0.95)
             padding: 0.5rem
             @include sm-screen
-                height: 70vh
+                height: 60vh
                 flex-flow: row wrap
                 padding: 0
 
@@ -93,6 +94,40 @@
                     width: 100%
                     bottom: 0
 
+        .details-card-body
+            display: flex
+            flex-flow: row wrap
+            justify-content: space-evenly
+            background-color: #f4f4f4
+            padding-top: 0.5rem
+
+            .card-forecast
+                display: flex
+                flex-flow: column
+                align-items: center
+                justify-content: center
+                margin: 0.5rem 1rem
+                @include md-screen
+                    margin: 0
+                
+                .forecast-day
+                    font-size: 1rem
+                    margin: 0
+
+            .icon-wrapper
+                position: relative
+                height: 75px
+                border-radius: 50%
+                background-color: #cc95bf
+                width: 75px
+                display: flex
+                align-items: center
+                justify-content: center
+
+                img
+                    height: 60px
+                
+                
 .animation-scale-up
     animation: scaleUp 1s ease-in-out 0.5s forwards
 

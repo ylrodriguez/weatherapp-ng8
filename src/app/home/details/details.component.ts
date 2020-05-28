@@ -43,6 +43,7 @@ export class DetailsComponent implements OnInit {
       // There's a citySelected previously requested
       if (this.sharedHomeService.citySelected && this.sharedHomeService.citySelected.slug == slug) {
         this.city = this.sharedHomeService.citySelected
+        this.getForecastInfo(this.city);
         this.addBackground();
         this.spinner.hide();
         this.canStartAnimation = true;
@@ -54,6 +55,7 @@ export class DetailsComponent implements OnInit {
               this.router.navigate(['/'])
             }
             this.getWeatherInfo(res);
+            this.getForecastInfo(res);
           },
           (err) => {
             console.log("Error ngOnInit@DetailsComponent: ");
@@ -81,6 +83,20 @@ export class DetailsComponent implements OnInit {
         this.canStartAnimation = true;
       }
     );
+  }
+
+  getForecastInfo(res: City){
+    this.detailsSubscription = this.weatherService.getWeatherForecast(res).subscribe(
+      (res) => {
+        this.city = res;
+      },
+      (err) => {
+        console.log("Error getForecastInfo@DetailsComponent: ");
+        console.log(err);
+        this.spinner.hide();
+        this.canStartAnimation = true;
+      }
+    )
   }
 
   addBackground() {

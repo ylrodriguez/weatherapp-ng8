@@ -6,14 +6,13 @@ import { SharedModule } from '../shared/shared.module';
 import { CitiesComponent } from './cities/cities.component';
 import { CommonModule } from '@angular/common';
 import { CityCardComponent } from './cities/city-card/city-card.component';
-import { WeatherIconComponent } from './cities/weather-icon/weather-icon.component';
 import { DetailsComponent } from './details/details.component';
 import { AddCityComponent } from './cities/add-city/add-city.component';
 import { FormsModule } from '@angular/forms'
 import { NgxSpinnerModule } from "ngx-spinner";
 
 @NgModule({
-  declarations: [HomeComponent, CitiesComponent, CityCardComponent, WeatherIconComponent, DetailsComponent, AddCityComponent],
+  declarations: [HomeComponent, CitiesComponent, CityCardComponent, DetailsComponent, AddCityComponent],
   imports: [
     RouterModule.forChild([HOME_ROUTE]),
     SharedModule,

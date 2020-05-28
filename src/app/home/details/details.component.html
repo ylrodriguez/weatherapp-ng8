@@ -1,10 +1,12 @@
 <div class="details-container">
-    <div class="details-circle-bg" [ngClass] = "{'animation-circle': canStartAnimation}"></div>
-    <section class="details-card" [ngClass] = "{'animation-scale-up': canStartAnimation}">
-        <div class="details-card-header" [ngStyle] = "addBackground()">
+    <div class="details-circle-bg" [ngClass]="{'animation-circle': canStartAnimation}"></div>
+    <section class="details-card" [ngClass]="{'animation-scale-up': canStartAnimation}">
+        <div class="details-card-header" [ngStyle]="addBackground()">
             <div class="details-summary">
                 <h1>{{city.main.temp}}°</h1>
-                <app-weather-icon [state] = "city.icon"></app-weather-icon>
+                <div class="weather-icon">
+                    <img src="http://openweathermap.org/img/wn/{{city.icon}}@2x.png" alt="">
+                </div>
                 <h3>{{city.desc}}</h3>
                 <div class="humidity-wind">
                     <div class="humidity">
@@ -17,7 +19,18 @@
                     </div>
                 </div>
             </div>
-            <div><h2 class="details-city-name">{{city.name}}</h2></div>
+            <div>
+                <h2 class="details-city-name">{{city.name}}</h2>
+            </div>
+        </div>
+        <div class="details-card-body">
+            <div class="card-forecast" *ngFor="let item of city.forecast">
+                <p class="forecast-day">{{item.dayName}}</p>
+                <div class="icon-wrapper">
+                    <img src="http://openweathermap.org/img/wn/{{item.weather[0].icon}}@2x.png" alt="">
+                </div>
+                <p>{{item.main.temp}}°</p>
+            </div>
         </div>
     </section>
 </div>
