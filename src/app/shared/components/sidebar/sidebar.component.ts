@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
+import { User } from '../../models/user.model';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -11,10 +13,14 @@ export class SidebarComponent implements OnInit {
   @Input() isOpen: boolean;
   @Output() closeSidebar = new EventEmitter<boolean>();
   @Output() openAddCityModal = new EventEmitter();
+  user: User;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private authService: AuthService) { }
 
   ngOnInit() {
+    this.authService.getAuthUser().subscribe(
+      res => this.user = res
+    )
   }
 
   close() {

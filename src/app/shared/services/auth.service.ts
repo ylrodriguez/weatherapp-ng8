@@ -11,7 +11,7 @@ import { User } from '../models/user.model';
 export class AuthService {
 
   private _redirectUrl: string = "/";
-  private _loginUrl: string = '/accounts/login';
+  private _loginUrl: string = '/login';
   private baseURL = environment.apiUrl + 'auth';
 
   constructor(

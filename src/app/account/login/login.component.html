@@ -1,10 +1,6 @@
-<div class="container-fluid">
+<div class="login-container">
     <div class="login">
-        <div class="">
-            <a routerLink="/">
-                <img src="/assets/img/icon.png" width="80" height="80" alt="">
-            </a>
-        </div>
+        <img src="/content/img/icon.svg" width="80" height="80" alt="">
 
         <div *ngIf="hasError" class="alert alert-danger alert-dismissible fade show" role="alert">
             {{errorMessage}}
@@ -26,7 +22,7 @@
             <div class=" form-group">
                 <div class="d-flex justify-content-between">
                     <label for="">Password</label>
-                    <a href="">Forgot password?</a>
+                    <!-- <a href="">Forgot password?</a> -->
                 </div>
                 <input class="form-control" type="password" name="password" required minlength="6"
                     [(ngModel)]="form.password" #password="ngModel"
@@ -42,7 +38,7 @@
     </div>
 
     <div class="login-footer">
-        <p>New to DeepCart? <a routerLink="/accounts/signup">Create an account</a></p>
+        <p>New to WeatherApp? <a routerLink="/signup">Create an account</a></p>
     </div>
 
     <code class="login-example">
