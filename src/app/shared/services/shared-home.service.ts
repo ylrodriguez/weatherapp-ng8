@@ -23,6 +23,10 @@ export class SharedHomeService {
     return this._userCities;
   }
 
+  cleanUsersCity(){
+    this._userCities.next([]);
+  }
+
   addCityToUsersCity(city: City){
     const currentValue = this._userCities.getValue();
     const updatedValue = [...currentValue, city];

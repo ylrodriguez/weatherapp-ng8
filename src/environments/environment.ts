@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: "http://deepcartnglaravel:8080/api/"
+  apiUrl: "http://192.168.0.2:8081/api/"
 };
 
 /*
