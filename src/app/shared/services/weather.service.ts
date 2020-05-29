@@ -9,7 +9,7 @@ import { map } from 'rxjs/operators';
 })
 export class WeatherService {
 
-  private baseURL = 'http://api.openweathermap.org/data/2.5';
+  private baseURL = 'https://api.openweathermap.org/data/2.5';
   private apiKey = 'a331b4942fe047524203b7bf57155633'
 
   constructor(private http: HttpClient) { }
