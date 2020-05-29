@@ -58,7 +58,8 @@ export class SignupComponent implements OnInit {
     window.scroll(0,0);
     this.isSubmitted = false;
     console.log(err)
-    this.errorMessage = err.error ? err.message : 'Something\'s wrong. Try later.';
+    this.errorMessage = err.error ? err.error : 'Something\'s wrong. Try later.';
+    
     this.hasError = true;
   }
 

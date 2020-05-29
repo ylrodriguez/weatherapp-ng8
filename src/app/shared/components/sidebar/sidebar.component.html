@@ -2,7 +2,7 @@
     <div class="sidebar-details">
         <i id="back-sidebar" class="fas fa-arrow-left" (click)="close()"></i>
         <div class="profile-pic"></div>
-        <div class="text-wrapper">
+        <div *ngIf="user" class="text-wrapper">
             <h5 class="m-0">{{user.name}} {{user.lastname}}</h5>
             <p class="m-0">{{user.email}}</p>
         </div>
