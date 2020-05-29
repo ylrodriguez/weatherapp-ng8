@@ -11,7 +11,7 @@
                         <p> {{item.name}} - {{item.country}}</p>
                     </li>
                 </ul>
-                <object [class.hide]="!isSearching" width="30" height="30" class="loading-circle" type="image/svg+xml"
+                <object [class.hide]="!isSearching" width="30" height="30" class="loading-circle secondary-icon" type="image/svg+xml"
                     data="content/img/loading-circle.svg"> </object>
                 <p [ngClass]="{'animate-message': showAnimationMessage}" *ngIf="showMessageSearch" style="margin-top: 0.5rem auto; 
                 padding: 1px 12px;">{{messageSearch}}</p>

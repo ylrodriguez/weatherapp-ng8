@@ -1,6 +1,6 @@
 <div class="login-container">
     <div class="login">
-        <img src="/content/img/icon.svg" width="80" height="80" alt="">
+        <img id="logo-weatherapp" src="/content/img/icon.svg" width="80" height="80" alt="">
 
         <div *ngIf="hasError" class="alert alert-danger alert-dismissible fade show" role="alert">
             {{errorMessage}}
@@ -33,7 +33,9 @@
                 </div>
             </div>
             <!--  Submit -->
-            <button class="btn btn-success" [disabled]="!f.form.valid || isSubmitted ">Sign in</button>
+            <button class="btn btn-success" [disabled]="!f.form.valid || isSubmitted ">Sign in 
+                <img *ngIf="isSubmitted" id="loading-circle" src="/content/img/loading-circle.svg" alt="">
+            </button>
         </form>
     </div>
 

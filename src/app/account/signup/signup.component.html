@@ -1,0 +1,116 @@
+<div class="signup-container">
+    <div class="signup">
+        <img src="/content/img/icon.svg" width="80" height="80" alt="">
+        <p>Join WeatherApp</p>
+        <h1 class="text-center">Create your account</h1>
+
+        <div *ngIf="hasError" class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{errorMessage}}
+            <span aria-hidden="true" class="close" (click)="closeAlert()">&times;</span>
+        </div>
+
+        <form #f="ngForm" (ngSubmit)="f.form.valid && onSubmit()">
+            <!-- Name -->
+            <div class=" form-group">
+                <label for="">Name</label>
+                <input class="form-control" type="text" name="name" required maxlength="30" [(ngModel)]="user.name"
+                    #name="ngModel" [ngClass]="{'is-invalid': name.invalid && (name.dirty || name.touched)}">
+                <div *ngIf="name.invalid && (name.dirty || name.touched)" class="invalid-feedback">
+                    <div *ngIf="name.errors.required">Enter your name</div>
+                </div>
+            </div>
+            <!-- Last Name -->
+            <div class=" form-group">
+                <label for="">Last name</label>
+                <input class="form-control" type="text" name="lastname" required maxlength="30"
+                    [(ngModel)]="user.lastname" #lastname="ngModel"
+                    [ngClass]="{'is-invalid': lastname.invalid && (lastname.dirty || lastname.touched)}">
+                <div *ngIf="lastname.invalid && (lastname.dirty || lastname.touched)" class="invalid-feedback">
+                    <div *ngIf="lastname.errors.required">Enter your last name</div>
+                </div>
+            </div>
+            <!-- Email -->
+            <div class=" form-group">
+                <label for="">Email</label>
+                <input class="form-control" type="email" name="email" maxlength="40" required email
+                    [(ngModel)]="user.email" #email="ngModel"
+                    [ngClass]="{'is-invalid': email.invalid && (email.dirty || email.touched)}">
+                <div *ngIf="email.invalid && (email.dirty || email.touched)" class="invalid-feedback">
+                    <div *ngIf="email.errors.required">Enter your email</div>
+                    <div *ngIf="email.errors.email">Enter a valid email</div>
+                </div>
+            </div>
+            <!-- Password -->
+            <div class=" form-group">
+                <label for="">Password</label>
+                <input class="form-control" type="password" name="password" required minlength="6" maxlength="20"
+                    [(ngModel)]="user.password" #password="ngModel" (blur)="changeVerifyPassword()"
+                    [ngClass]="{'is-invalid': password.invalid && (password.dirty || password.touched)}">
+                <div *ngIf="password.invalid && (password.touched || password.dirty)" class="invalid-feedback">
+                    <div *ngIf="password.errors.required">Enter your password</div>
+                    <div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
+                    <div *ngIf="password.errors.maxlength">Password can't exceed 20 characters</div>
+                </div>
+            </div>
+            <!-- Confirm Password -->
+            <div class=" form-group">
+                <label for="">Confirm password</label>
+                <input class="form-control" type="password" name="confirmPassword" required minlength="6" maxlength="20"
+                    [(ngModel)]="user.confirmPassword" #confirmPassword="ngModel" [pattern]="verifypassword"
+                    [ngClass]="{'is-invalid': confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)}">
+                <div *ngIf="confirmPassword.invalid && (confirmPassword.touched || confirmPassword.dirty)"
+                    class="invalid-feedback">
+                    <div *ngIf="confirmPassword.errors.required">Confirm your password</div>
+                    <div *ngIf="confirmPassword.errors.pattern">Passwords don't match</div>
+                </div>
+            </div>
+            <!-- Address -->
+            <div class=" form-group">
+                <label for="">Address</label>
+                <input class="form-control" type="text" name="address" required [(ngModel)]="user.address"
+                    #address="ngModel" maxlength="80"
+                    [ngClass]="{'is-invalid': address.invalid && (address.dirty || address.touched)}">
+                <div *ngIf="address.invalid && (address.dirty || address.touched)" class="invalid-feedback">
+                    <div *ngIf="address.errors.required">Enter your address</div>
+                </div>
+            </div>
+            <!-- Number -->
+            <div class=" form-group">
+                <label for="">Number</label>
+                <input class="form-control" type="text" name="number" required pattern='^[0-9]+$' maxlength="10"
+                    [(ngModel)]="user.number" #number="ngModel"
+                    [ngClass]="{'is-invalid': number.invalid && (number.dirty || number.touched)}">
+                <div *ngIf="number.invalid && (number.dirty || number.touched)" class="invalid-feedback">
+                    <div *ngIf="number.errors.required">Enter your phone number</div>
+                    <div *ngIf="number.errors.pattern">Enter a valid phone number</div>
+                    <div *ngIf="number.errors.maxlength">Enter a valid phone number</div>
+                </div>
+            </div>
+            <!-- Date of Birth: dob -->
+            <div class=" form-group">
+                <label for="">Date of birth</label>
+                <div>
+                    <input matInput [matDatepicker]="picker" required placeholder="Choose a date" #dob="ngModel"
+                        name="dob" [min]="minDate" [max]="maxDate" [(ngModel)]="user.dob">
+
+                    <div id="toggler-wrapper">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    </div>
+                    <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
+                    <div *ngIf="dob.invalid && (dob.dirty || dob.touched)" class="in-feedback">
+                        <div *ngIf="dob.errors.required|| dob.errors.matDatepickerMin || dob.errors.matDatepickerMax">
+                            Enter a valid date of birth</div>
+                    </div>
+                </div>
+            </div>
+            <!--  Submit -->
+            <button class="btn btn-success" [disabled]="!f.form.valid || isSubmitted ">Sign in
+                <img *ngIf="isSubmitted" id="loading-circle" src="/content/img/loading-circle.svg" alt="">
+            </button>
+        </form>
+    </div>
+
+    <div class="signup-footer">
+        <p>Have an account? <a routerLink="/login">Log in</a></p>
+    </div>
+</div>

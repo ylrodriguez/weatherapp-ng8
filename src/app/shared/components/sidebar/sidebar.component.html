@@ -10,9 +10,12 @@
     <ul class="sidebar-options">
         <li (click)="navigateToHome()">Home</li>
         <li (click)="emitOpenAddCityModal()">Add city</li>
-        <li>Log out</li>
+        <li (click)="onLogOut()">Log out</li>
     </ul>
 </div>
 
 <div class="overlay" [ngClass]="{open: isOpen}" (click)="close()">
 </div>
+
+<ngx-spinner bdColor="rgb(28, 27, 29, 0.8)" size="medium" color="#fff" type="ball-scale-multiple" [fullScreen]="true">
+</ngx-spinner>
