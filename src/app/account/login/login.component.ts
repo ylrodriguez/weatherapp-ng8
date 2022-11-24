@@ -11,8 +11,8 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   form = {
-    email: '',
-    password: ''
+    email: 'test@gmail.com',
+    password: '123456'
   }
 
   isSubmitted: boolean = false;
@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSubmit(){
+  onSubmit() {
     this.isSubmitted = true;
     this.authService.login(this.form).subscribe(
       res => this.handleResponse(res),
@@ -35,19 +35,19 @@ export class LoginComponent implements OnInit {
     )
   }
 
-  handleResponse(res){
+  handleResponse(res) {
     this.hasError = false;
     this.tokenService.setToken(res.access_token);
     this.router.navigate([this.authService.redirectUrl])
   }
 
-  handleError(err){
+  handleError(err) {
     this.isSubmitted = false;
     this.errorMessage = err ? err.message : 'Something\'s wrong. Try later.';
     this.hasError = true;
   }
 
-  closeAlert(){
+  closeAlert() {
     this.hasError = false;
   }
 
