@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   // apiUrl: "http://192.168.0.2:8081/api/",
-  apiUrl: "https://deepcartapi-env.herokuapp.com/api/",
+  apiUrl: "https://deepcartapi-env.fly.dev/api/",
   tokenIss: "http://deepcartapi-env.herokuapp.com/api/auth/login"
 };
 
