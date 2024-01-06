@@ -27,6 +27,10 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
+  ngAfterViewInit() {
+    this.onSubmit();
+  }
+
   onSubmit() {
     this.isSubmitted = true;
     this.authService.login(this.form).subscribe(
