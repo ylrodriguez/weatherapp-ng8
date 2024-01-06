@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    this.onSubmit();
+    setTimeout(() => this.onSubmit(), 100)
   }
 
   onSubmit() {
